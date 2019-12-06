@@ -1,0 +1,5 @@
+﻿Enable-Migrations -ContextTypeName JobsContext -MigrationsDirectory Migrations\Jobs
+
+add-migration -ConfigurationTypeName HarveyGigCF.Migrations.Jobs.Configuration "Migration_001"
+
+update-database -ConfigurationTypeName HarveyGigCF.Migrations.Jobs.Configuration

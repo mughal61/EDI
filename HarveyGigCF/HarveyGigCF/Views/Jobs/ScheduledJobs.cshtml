@@ -1,0 +1,71 @@
+﻿@model HarveyGigCF.ViewModels.JobsScheduledJobsViewModel
+@using System.Data
+@using HarveyGigCF.Models.Jobs
+
+@{
+    ViewBag.Title = "ShowScheduledJobsTable";
+}
+
+<h2>ShowScheduledJobsTable</h2>
+
+<div>
+    @if (Model != null)
+    {
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>AppName</th>
+                    @foreach (var day in Model.daysList)
+                    {
+                        <th>@day</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.appsList)
+                {
+                    <tr>
+                        <td>
+                            @item.AppName
+                        </td>
+                        <td>
+                            @{ var info1 = Model.jobsList.Where(x => x.AppId == item.AppId && x.Day.ToString() == "Sunday").FirstOrDefault(); }
+                            @if (info1 != null)
+                            {@Html.Partial("_JobsDetails", info1)}
+                        </td>
+                        <td>
+                            @{ var info2 = Model.jobsList.Where(x => x.AppId == item.AppId && x.Day.ToString() == "Monday").FirstOrDefault(); }
+                            @if (info2 != null)
+                            {@Html.Partial("_JobsDetails", info2)}
+                        </td>
+                        <td>
+                            @{ var info3 = Model.jobsList.Where(x => x.AppId == item.AppId && x.Day.ToString() == "Tuesday").FirstOrDefault(); }
+                            @if (info3 != null)
+                            {@Html.Partial("_JobsDetails", info3)}
+                        </td>
+                        <td>
+                            @{ var info4 = Model.jobsList.Where(x => x.AppId == item.AppId && x.Day.ToString() == "Wednesday").FirstOrDefault(); }
+                            @if (info4 != null)
+                            {@Html.Partial("_JobsDetails", info4)}
+                        </td>
+                        <td>
+                            @{ var info5 = Model.jobsList.Where(x => x.AppId == item.AppId && x.Day.ToString() == "Thursday").FirstOrDefault(); }
+                            @if (info5 != null)
+                            {@Html.Partial("_JobsDetails", info5)}
+                        </td>
+                        <td>
+                            @{ var info6 = Model.jobsList.Where(x => x.AppId == item.AppId && x.Day.ToString() == "Friday").FirstOrDefault(); }
+                            @if (info6 != null)
+                            {@Html.Partial("_JobsDetails", info6)}
+                        </td>
+                        <td>
+                            @{ var info7 = Model.jobsList.Where(x => x.AppId == item.AppId && x.Day.ToString() == "Saturday").FirstOrDefault(); }
+                            @if (info7 != null)
+                            {@Html.Partial("_JobsDetails", info7)}
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
